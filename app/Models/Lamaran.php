@@ -20,4 +20,6 @@ class Lamaran extends Model
     public function perusahaan() {
         return $this->belongsTo(Perusahaan::class, 'id_perusahaan');
     }
+
+
 }

@@ -25,7 +25,7 @@ public function index()
     {
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => 'required',
-            'email' => 'required|email|unique:user,email',
+            'email' => 'required|email|unique:users,email',
             'no_telp' => 'required|min:7',
             'alamat' => 'required',
             'nik' => 'required',
@@ -54,6 +54,7 @@ public function index()
             'alamat' => $request->alamat,
             'password' => Hash::make('SMKBISA'),
             'otp' => 'null',
+            'role' => 'user',
         ]);
 
         $code = strtoupper(Str::random(5));

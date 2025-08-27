@@ -60,7 +60,7 @@ Route::prefix('v1')->group(function(){
 
     Route::prefix('user')->group(function(){
         Route::get('get', [ProfileController::class, 'yourProfile']);
-        Route::put('update/{id}', [ProfileController::class, 'update']);
+        Route::put('update', [ProfileController::class, 'update']);
 
         Route::get('lowongan', [DaftarLowonganController::class, 'index']);
         Route::post('daftar', [DaftarLowonganController::class, 'daftar']);

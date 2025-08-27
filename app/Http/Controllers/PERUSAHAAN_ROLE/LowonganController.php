@@ -19,7 +19,7 @@ class LowonganController extends Controller
         return response()->json($lowongan, 200);
     }
 
-    public function store(Request $request, $id){
+    public function store(Request $request){
         $userId = auth()->user()->id;
 
         $validator = Validator::make($request->all(), [
@@ -51,7 +51,7 @@ class LowonganController extends Controller
 
 
     public function update(Request $request, $id){
-        $lowongan = Perusahaan::find('id', $id);
+        $lowongan = Perusahaan::find($id);
         $validator = Validator::make($request->all(), [
             'telepon' => 'required',
             'deskripsi' => 'required',

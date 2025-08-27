@@ -14,7 +14,7 @@ class DaftarLowonganController extends Controller
     public function index(){
         $lowongan = Perusahaan::where('verifikasi', 'diterima')->first();
     }
-    
+
     public function daftar(Request $request){
         $userId = auth()->user()->id;
         $alumni = Alumni::where('user_id', $userId)->first();
@@ -42,7 +42,7 @@ class DaftarLowonganController extends Controller
     public function lamaranKamu(){
         $getUser = auth()->user()->id;
         $userId = Alumni::where('user_id', $getUser)->first();
-        $lamaran = Lamaran::where('id_alumni', $userId->id)->get();
+        $lamaran = Lamaran::where('id_alumni', $userId->id)->with(['perusahaan', 'alumni'])->get();
         return response()->json($lamaran, 200);
     }
 

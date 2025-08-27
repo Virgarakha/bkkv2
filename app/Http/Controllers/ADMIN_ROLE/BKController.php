@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 class BKController extends Controller
 {
     public function index(){
-        $bk = User::where('role', 'BK')->get();
+        $bk = User::where('role', 'bk')->get();
         return response()->json($bk, 200);
     }
 
@@ -46,6 +46,7 @@ class BKController extends Controller
             'no_telp' => $request->no_telp,
             'alamat' => $request->alamat,
             'password' => Hash::make($request->password),
+            'role' => 'bk',
             'otp' => 'null',
         ]);
 
