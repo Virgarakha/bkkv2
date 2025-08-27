@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ADMIN_ROLE\AlumniController as ADMIN_ROLEAlumniController;
+use App\Http\Controllers\ADMIN_ROLE\BKController;
 use App\Http\Controllers\ADMIN_ROLE\PerusahaanController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BK_ROLE\AlumniController;
@@ -87,6 +89,20 @@ Route::prefix('v1')->group(function(){
             Route::delete('delete/{id}', [PerusahaanController::class, 'destroy']);
         });
 
-        Route::
+        Route::prefix('bk')->group(function(){
+            Route::get('get', [BKController::class, 'index']);
+            Route::get('show/{id}', [BKController::class, 'show']);
+            Route::post('create', [BKController::class, 'store']);
+            Route::put('update/{id}', [BKController::class, 'update']);
+            Route::delete('delete/{id}', [BKController::class, 'destroy']);
+        });
+
+        Route::prefix('alumni')->group(function(){
+            Route::get('get', [ADMIN_ROLEAlumniController::class, 'index']);
+            Route::get('show/{id}', [ADMIN_ROLEAlumniController::class, 'show']);
+            Route::post('create', [ADMIN_ROLEAlumniController::class, 'store']);
+            Route::put('update/{id}', [ADMIN_ROLEAlumniController::class, 'update']);
+            Route::delete('delete/{id}', [ADMIN_ROLEAlumniController::class, 'destroy']);
+        });
     });
 });
