@@ -5,11 +5,16 @@ namespace App\Http\Controllers\USER_ROLE;
 use App\Http\Controllers\Controller;
 use App\Models\Alumni;
 use App\Models\Lamaran;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class DaftarLowonganController extends Controller
 {
+    public function index(){
+        $lowongan = Perusahaan::where('verifikasi', 'diterima')->first();
+    }
+    
     public function daftar(Request $request){
         $userId = auth()->user()->id;
         $alumni = Alumni::where('user_id', $userId)->first();

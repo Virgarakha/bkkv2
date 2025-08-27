@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ADMIN_ROLE\PerusahaanController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BK_ROLE\AlumniController;
+use App\Http\Controllers\BK_ROLE\CountController;
 use App\Http\Controllers\BK_ROLE\UserController;
 use App\Http\Controllers\PERUSAHAAN_ROLE\AccController;
 use App\Http\Controllers\PERUSAHAAN_ROLE\LowonganController;
@@ -26,6 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function(){
+    Route::prefix('guest')->group(function(){
+        Route::get('status/count', [CountController::class, 'CountStatus']);
+    });
+
     Route::prefix('auth')->group(function(){
         Route::post('signup', [AuthController::class, 'signup']);
         Route::post('signin', [AuthController::class, 'signin']);
@@ -54,6 +60,7 @@ Route::prefix('v1')->group(function(){
         Route::get('get', [ProfileController::class, 'yourProfile']);
         Route::put('update/{id}', [ProfileController::class, 'update']);
 
+        Route::get('lowongan', [DaftarLowonganController::class, 'index']);
         Route::post('daftar', [DaftarLowonganController::class, 'daftar']);
         Route::get('lamaranKamu', [DaftarLowonganController::class, 'lamaranKamu']);
         Route::put('cancelLamaran/{id}', [DaftarLowonganController::class, 'cancelLamaran']);
@@ -69,5 +76,17 @@ Route::prefix('v1')->group(function(){
         Route::get('pelamar', [AccController::class, 'pelamar']);
         Route::get('pelamar/{id}', [AccController::class, 'showPelamar']);
         Route::put('pelamar/{id}', [AccController::class, 'setSiswa']);
+    });
+
+    Route::prefix('admin')->group(function(){
+        Route::prefix('perusahaan')->group(function() {
+            Route::get('get', [PerusahaanController::class, 'index']);
+            Route::get('lowongan', [PerusahaanController::class, 'lowongan']);
+            Route::get('show/{id}', [PerusahaanController::class, 'show']);
+            Route::put('verified/{id}', [PerusahaanController::class, 'verified']);
+            Route::delete('delete/{id}', [PerusahaanController::class, 'destroy']);
+        });
+
+        Route::
     });
 });

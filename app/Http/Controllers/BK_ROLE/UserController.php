@@ -44,7 +44,7 @@ class UserController extends Controller
             'skill' => 'required',
             'experience' => 'required',
             'cv' => 'required|file|mimes:pdf|max:2048',
-            'status_ditrima_kerja' => 'required'
+            'status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +73,7 @@ class UserController extends Controller
             'skill' => $request->skill,
             'experience' => $request->experience,
             'cv' => $cvPath,
-            'status_ditrima_kerja' => $request->status_ditrima_kerja
+            'status' => $request->status
         ]);
 
         return response()->json(['message' => 'User berhasil ditambahkan'], 201);
@@ -102,7 +102,7 @@ class UserController extends Controller
             'skill' => 'required',
             'experience' => 'required',
             'cv' => 'nullable|file|mimes:pdf|max:2048',
-            'status_ditrima_kerja' => 'required'
+            'status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -133,7 +133,7 @@ class UserController extends Controller
             'tahun_lulus' => $request->tahun_lulus,
             'skill' => $request->skill,
             'experience' => $request->experience,
-            'status_ditrima_kerja' => $request->status_ditrima_kerja
+            'status' => $request->status
         ]);
 
         return response()->json(['message' => 'User berhasil diupdate'], 200);

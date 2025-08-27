@@ -38,7 +38,7 @@ public function index()
             'skill' => 'required',
             'experience' => 'required',
             'cv' => 'required|file|mimes:pdf|max:2048',
-            'status_ditrima_kerja' => 'required'
+            'status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -83,7 +83,7 @@ public function index()
             'skill' => $request->skill,
             'experience' => $request->experience,
             'cv' => $cvPath,
-            'status_ditrima_kerja' => $request->status_ditrima_kerja
+            'status' => $request->status
         ]);
 
         return response()->json([
